@@ -1,0 +1,123 @@
+/* src/styles.css */
+body {
+  background: linear-gradient(45deg, #fce4ec, #f8bbd0, #f48fb1, #f06292);
+  background-size: 400% 400%;
+  animation: gradientShift 10s infinite alternate ease-in-out;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background: url('/flowers-bg.jpg') center/cover no-repeat;
+  z-index: 1;
+  opacity: 0.8;
+  filter: blur(3px);
+}
+
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.petal {
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  background: radial-gradient(circle at 50% 50%, #ff69b4, #d81b60);
+  opacity: 0.8;
+  border-radius: 70% 50% 80% 60%;
+  animation: fall linear infinite, sway 3s ease-in-out infinite alternate;
+  left: calc(100vw * var(--random-x));
+  animation-duration: calc(5s + var(--random-speed) * 5s);
+  animation-delay: calc(var(--random-delay) * 3s);
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes sway {
+  0% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
+
+.card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 450px;
+  z-index: 3;
+  animation: fadeIn 1.5s ease-in-out;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card h1 {
+  font-size: 28px;
+  color: #d81b60;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card p {
+  font-size: 20px;
+  color: #555;
+}
+
+.button {
+  margin-top: 20px;
+  background: linear-gradient(45deg, #d81b60, #ff4081);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background: linear-gradient(45deg, #ad1457, #ff80ab);
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
